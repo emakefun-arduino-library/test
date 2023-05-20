@@ -9,13 +9,6 @@ jobs:
   auto_release:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-
-    - name: Get Commit ID
-      id: get_commit_id
-      run: echo "commit_id=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
     - name: Create New Release
       uses: marvinpinto/action-automatic-releases@latest
       with:
