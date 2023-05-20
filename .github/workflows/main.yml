@@ -19,5 +19,5 @@ jobs:
     - name: Create New Release
       uses: marvinpinto/action-automatic-releases@latest
       with:
-        repo_token: ${{ secrets.REPO_TOKEN }}
+        repo_token: ${{ secrets.RELEASE_TOKEN }}
         automatic_release_tag: ${{ steps.get_commit_id.outputs.commit_id }}
