@@ -14,10 +14,11 @@ jobs:
 
     - name: Get Commit ID
       id: get_commit_id
-      run: echo ::set-output name=commit_id::$(git rev-parse --short HEAD)
+      run: echo "commit_id=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
     - name: Create New Release
       uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: ${{ secrets.RELEASE_TOKEN }}
-        automatic_release_tag: ${{ steps.get_commit_id.outputs.commit_id }}
+        automatic_release_tag: "latest"
+        prerelease: false
