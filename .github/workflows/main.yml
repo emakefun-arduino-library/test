@@ -19,6 +19,7 @@ jobs:
         with:
           draft: false
           prerelease: false
+          repo_token:  ${{ secrets.RELEASE_TOKEN }}
   create_release:
     name: Create Release
     runs-on: ubuntu-latest
@@ -30,7 +31,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
           tag_name: release
-          release_name: Release
+          release_name: release
+          repo_token:  ${{ secrets.RELEASE_TOKEN }}
           body: |
             Changes in this Release:
             - Update Feature 1
