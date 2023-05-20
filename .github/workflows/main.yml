@@ -6,36 +6,33 @@ on:
       - main
 
 jobs:
-  delete_release:
-    name: Delete Release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Delete Previous Releases
-        id: delete_releases
-        uses: marvinpinto/action-automatic-releases@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        with:
-          draft: false
-          prerelease: false
-          repo_token:  ${{ secrets.RELEASE_TOKEN }}
+#   delete_release:
+#     name: Delete Release
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Delete Previous Releases
+#         id: delete_releases
+#         uses: marvinpinto/action-automatic-releases@latest
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+#         with:
+#           automatic_release_tag: "latest"
+#           prerelease: true
+#           title: "Development Build"
+#           repo_token:  ${{ secrets.RELEASE_TOKEN }}
+          
   create_release:
     name: Create Release
     runs-on: ubuntu-latest
-    needs: delete_release
+#     needs: delete_release
     steps:
       - uses: actions/checkout@v2
       - uses: actions/create-release@v1.0.4
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          tag_name: release
-          release_name: release
-          repo_token:  ${{ secrets.RELEASE_TOKEN }}
-          body: |
-            Changes in this Release:
-            - Update Feature 1
-            - Fix issue #2
-          draft: false
+          automatic_release_tag: "latest"
           prerelease: false
+          title: "release"
+          repo_token:  ${{ secrets.RELEASE_TOKEN }}
