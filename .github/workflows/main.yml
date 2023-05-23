@@ -1,19 +1,15 @@
-name: Auto Release
-
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
-  auto_release:
+  hello_world_job:
     runs-on: ubuntu-latest
+    name: A job to say hello
     steps:
-    - name: Create New Release
-      uses: softprops/action-gh-release@latest
-      with:
-        token: ${{ secrets.RELEASE_TOKEN }}
-#         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        tag_name: "latest"
-        prerelease: false
-        name: "release"
+      - name: Hello world action step
+        id: hello
+        uses: emakefun-arduino-library/hello-world-javascript-action@v1.1
+        with:
+          who-to-greet: 'Mona the Octocat'
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
